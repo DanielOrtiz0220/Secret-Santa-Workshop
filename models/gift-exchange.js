@@ -1,22 +1,15 @@
 const { BadRequestError } = require("../utils/errors");
 
 class GiftExchange {
-  static pairs(names) {
-    if (names.length % 2 != 0) {
-      throw new BadRequestError("Error: Name count must be even");
-    }
-    const shuffled_names = shuffle(names);
-    return grouper(shuffled_names);
-  }
   static traditional(names) {
-    console.log(names.names);
+    console.log(names);
     const shuffled_names = shuffle(names.names);
     const pairings = grouper(shuffled_names);
     const gifting_string_arr = [];
     pairings.map((pair) => {
-      gifting_string_arr.push(pair[0] + " is gifting " + pair[1]);
+      gifting_string_arr.push(pair[0] + " will exchange gifts with " + pair[1]);
     });
-    console.log(gifting_string_arr + "the randomzied set exists");
+    console.log(gifting_string_arr);
     return gifting_string_arr;
   }
 }
@@ -45,7 +38,5 @@ function grouper(names_arr) {
   }
   return result;
 }
-// console.log(GiftExchange.pairs(["Danny", "Irem", "David", "Eva"]));
-// console.log(GiftExchange.traditional(["Danny", "Irem", "David", "Eva"]));
 
 module.exports = GiftExchange;
